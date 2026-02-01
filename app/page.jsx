@@ -185,7 +185,7 @@ export default function Home() {
     © 2026 Omegastrike Esports · BGMI · India 🇮🇳
   </div>
   <div className="text-gray-600">
-    Designed & Developed by Vinay
+    Designed & Developed by Octane
   </div>
 </footer>
         </main>
