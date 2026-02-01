@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable} ${teluguFont.variable}`}>
         <div
-    className="fixed inset-0 -z-10 bg-no-repeat bg-center bg-cover opacity-10"
+    className="fixed inset-0 -z-10 bg-no-repeat bg-center bg-cover opacity-50"
     style={{ backgroundImage: "url('/bg-texture.png')" }}
         />
         <BackgroundMusic />
