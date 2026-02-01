@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { User } from "lucide-react";
 import { notFound } from "next/navigation";
-import { supabase } from "../../../lib/supabase";
+import { supabase } from "@/lib/supabase";
 
 export default async function PlayerPage({ params }) {
   const { slug } = params;
@@ -79,3 +79,4 @@ function StatCard({ label, value }) {
     </div>
   );
 }
+
