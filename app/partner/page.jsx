@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Reveal from "../../components/Reveal";
+import Reveal from "@/components/Reveal";
 
 export default function PartnerPage() {
   const [loading, setLoading] = useState(false);
@@ -137,3 +137,4 @@ function Input({ label, name, type = "text" }) {
     </div>
   );
 }
+
