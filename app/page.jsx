@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Loader from "../components/Loader";
-import Reveal from "../components/Reveal";
-import Navbar from "../components/Navbar";
-import { translations } from "../lib/translations";
+import Navbar from "@/components/Navbar";
+import Loader from "@/components/Loader";
+import Reveal from "@/components/Reveal";
+
+import { translations } from "@/lib/translations";
 
 import {
   Instagram,
