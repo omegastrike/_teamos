@@ -180,10 +180,14 @@ export default function Home() {
           </Reveal>
 
           {/* FOOTER */}
-          <footer className="py-6 text-center text-gray-500 text-sm">
-            © 2026 Omegastrike Esports · BGMI · India 🇮🇳
-          </footer>
-
+          <footer className="py-6 text-center text-gray-500 text-sm space-y-1">
+  <div>
+    © 2026 Omegastrike Esports · BGMI · India 🇮🇳
+  </div>
+  <div className="text-gray-600">
+    Designed & Developed by Vinay
+  </div>
+</footer>
         </main>
       )}
     </>
