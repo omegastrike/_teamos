@@ -1,6 +1,39 @@
+/* ============================= */
+/* PREMIUM CUSTOM FONT */
+/* ============================= */
+@font-face {
+  font-family: "Sequel100";
+  src: url("/fonts/Sequel100Black-45.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================= */
+/* TAILWIND BASE */
+/* ============================= */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================= */
+/* FONT UTILITIES */
+/* ============================= */
+
+/* Premium headline font */
+.font-sequel {
+  font-family: "Sequel100";
+  letter-spacing: 0.04em; /* esports feel */
+}
+
+/* Telugu-only text (kept for future use) */
+.telugu-text {
+  font-family: var(--font-telugu);
+}
+
+/* ============================= */
+/* GLOBAL STYLES */
+/* ============================= */
 
 html {
   scroll-behavior: smooth;
@@ -9,37 +42,14 @@ html {
 body {
   background: #000;
   color: #fff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  font-family: "Sequel100";
 }
 
-:root {
-  --font-inter: system-ui;
-  --font-orbitron: system-ui;
-}
+/* ============================= */
+/* ANIMATIONS */
+/* ============================= */
 
-body {
-  font-family: var(--font-inter);
-}
-
-body {
-  font-family: var(--font-inter);
-}
-
-/* Apply ONLY to Telugu text */
-.telugu-text {
-  font-family: var(--font-telugu);
-}
-
-body {
-  font-family: var(--font-inter);
-}
-
-/* Telugu-only text */
-.telugu-text {
-  font-family: var(--font-telugu);
-}
-
-/* Fade + scale */
+/* Fade + scale animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -55,7 +65,7 @@ body {
   animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Checkmark draw animation */
+/* SVG checkmark animation */
 .checkmark {
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
