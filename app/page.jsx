@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Navbar from "@/components/Navbar";
-import Loader from "@/components/Loader";
-import Reveal from "@/components/Reveal";
-
-import { translations } from "@/lib/translations";
+import Loader from "../components/Loader";
+import Reveal from "../components/Reveal";
+import Navbar from "../components/Navbar";
+import { translations } from "../lib/translations";
+import { supabase } from "../lib/supabase";
 
 import {
   Instagram,
@@ -18,26 +18,85 @@ import {
   Zap,
   Shield,
   Eye,
+  Mail, 
+  ShieldCheck,
 } from "lucide-react";
+
+/* ROLE → ICON MAP */
+const roleIcons = {
+  IGL: Crosshair,
+  Assaulter: Zap,
+  Support: Shield,
+  Scout: Eye,
+};
+
+const founders = [
+  {
+    name: "Ramesh",
+    role: "Founder",
+    desc: "Visionary behind Omegastrike, driving competitive excellence and long-term growth.",
+  },
+  {
+    name: "ShankarNath",
+    role: "Co-Founder",
+    desc: "Strategic leader focused on team building and in-game dominance.",
+  },
+];
+
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("en");
 
+  const [players, setPlayers] = useState([]);
+  const [playersLoading, setPlayersLoading] = useState(true);
+
   const t = translations[language];
 
+  /* Page loader delay */
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1800);
     return () => clearTimeout(timer);
   }, []);
 
-  /* ✅ BGMI ROSTER DATA (LOWERCASE SLUGS – FINAL) */
-  const roster = [
-    { name: "Head", slug: "Head", role: "IGL", icon: Crosshair },
-    { name: "Turbo", slug: "Turbo", role: "Assaulter", icon: Zap },
-    { name: "Spike", slug: "Spike", role: "Support", icon: Shield },
-    { name: "Octane", slug: "Octane", role: "Scout", icon: Eye },
-  ];
+  /* Supabase fetch + realtime */
+  useEffect(() => {
+    let channel;
+
+    async function fetchPlayers(isRealtime = false) {
+      if (!isRealtime) setPlayersLoading(true);
+
+      const { data, error } = await supabase
+        .from("players")
+        .select("*")
+        .order("slug");
+
+      if (error) {
+        console.error("Supabase error:", error);
+      } else {
+        setPlayers(data || []);
+      }
+
+      if (!isRealtime) setPlayersLoading(false);
+    }
+
+    // Initial load
+    fetchPlayers(false);
+
+    // Realtime updates
+    channel = supabase
+      .channel("players-live")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "players" },
+        () => fetchPlayers(true)
+      )
+      .subscribe();
+
+    return () => {
+      if (channel) supabase.removeChannel(channel);
+    };
+  }, []);
 
   return (
     <>
@@ -65,7 +124,9 @@ export default function Home() {
                 OMEGASTRIKE
               </h1>
 
-              <p className="mt-2 text-gray-400 text-sm">{t.heroSubtitle}</p>
+              <p className="mt-2 text-gray-400 text-sm">
+                {t.heroSubtitle}
+              </p>
 
               <p className="mt-4 max-w-xl text-gray-300 text-sm md:text-base">
                 {t.heroDesc}
@@ -96,7 +157,9 @@ export default function Home() {
                 <h2 className="text-3xl font-semibold mb-4">
                   {t.aboutTitle}
                 </h2>
-                <p className="text-gray-300">{t.aboutDesc}</p>
+                <p className="text-gray-300">
+                  {t.aboutDesc}
+                </p>
               </div>
             </section>
           </Reveal>
@@ -109,33 +172,93 @@ export default function Home() {
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                {roster.map((p, i) => {
-                  const Icon = p.icon;
-                  return (
-                    <Reveal delay={i * 0.1} key={i}>
-                      <div className="backdrop-blur-xl bg-glass border border-gold/30 rounded-xl p-6 text-center hover:scale-105 transition">
 
-                        <div className="flex justify-center mb-3">
-                          <Icon size={22} className="text-gold" />
+                {playersLoading && (
+                  <p className="col-span-full text-center text-gray-400">
+                    Loading roster...
+                  </p>
+                )}
+
+                {!playersLoading && players.length === 0 && (
+                  <p className="col-span-full text-center text-gray-400">
+                    No players found.
+                  </p>
+                )}
+
+                {!playersLoading &&
+                  players.map((p, i) => {
+                    const Icon = roleIcons[p.role];
+
+                    return (
+                      <Reveal delay={i * 0.1} key={p.slug}>
+                        <div className="backdrop-blur-xl bg-glass border border-gold/30 rounded-xl p-6 text-center hover:scale-105 transition">
+
+                          {Icon && (
+                            <div className="flex justify-center mb-3">
+                              <Icon size={22} className="text-gold" />
+                            </div>
+                          )}
+
+                          <Link
+                            href={`/players/${p.slug}`}
+                            className="text-xl font-semibold hover:text-gold transition"
+                          >
+                            {p.name}
+                          </Link>
+
+                          <p className="text-gold text-sm mt-2">
+                            {p.role}
+                          </p>
                         </div>
-
-                        <Link
-                          href={`/players/${p.slug}`}
-                          className="text-xl font-semibold hover:text-gold transition"
-                        >
-                          {p.name}
-                        </Link>
-
-                        <p className="text-gold text-sm mt-2">{p.role}</p>
-                      </div>
-                    </Reveal>
-                  );
-                })}
+                      </Reveal>
+                    );
+                  })}
               </div>
             </section>
           </Reveal>
 
-          {/* SOCIALS + CTA */}
+          {/* FOUNDERS */}
+<Reveal>
+  <section className="py-24 px-6">
+    <h2 className="text-center text-3xl font-semibold mb-12">
+      Leadership
+    </h2>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+      {founders.map((f, i) => (
+        <Reveal delay={i * 0.1} key={f.name}>
+          <div className="backdrop-blur-xl bg-glass border border-gold/30 rounded-2xl p-8 text-center hover:scale-105 transition">
+
+            {/* AVATAR */}
+            <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-gold/10 border border-gold/30 text-gold text-xl font-bold">
+              {f.name.charAt(0)}
+            </div>
+
+            {/* NAME */}
+            <h3 className="text-xl font-semibold mb-1">
+              {f.name}
+            </h3>
+
+            {/* ROLE */}
+            <p className="text-gold text-sm mb-4">
+              {f.role}
+            </p>
+
+            {/* DESCRIPTION */}
+            <p className="text-gray-400 text-sm leading-relaxed">
+              {f.desc}
+            </p>
+
+          </div>
+        </Reveal>
+      ))}
+
+    </div>
+  </section>
+</Reveal>
+
+          {/* SOCIALS */}
           <Reveal>
             <section className="py-24 px-6 text-center">
               <h2 className="text-3xl font-semibold mb-6">
@@ -180,13 +303,50 @@ export default function Home() {
           </Reveal>
 
           {/* FOOTER */}
-          <footer className="py-6 text-center text-gray-500 text-sm space-y-1">
-  <div>
-    © 2026 Omegastrike Esports · BGMI · India 🇮🇳
+          <footer className="py-10 text-center text-sm text-gray-500 space-y-4">
+
+  {/* CONTACT EMAILS */}
+  <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+
+    {/* SUPPORT */}
+    <a
+      href="mailto:support@omegastrike.in"
+      className="flex items-center gap-2 hover:text-gold transition"
+    >
+      <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gold/10 border border-gold/30">
+        <Mail size={16} className="text-gold" />
+      </span>
+      <span>
+        Support <span className="text-gray-300"></span>
+      </span>
+    </a>
+
+    {/* ADMIN */}
+    <a
+      href="mailto:admin@omegastrike.in"
+      className="flex items-center gap-2 hover:text-gold transition"
+    >
+      <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gold/10 border border-gold/30">
+        <ShieldCheck size={16} className="text-gold" />
+      </span>
+      <span>
+        Admin <span className="text-gray-300"></span>
+      </span>
+    </a>
+
   </div>
-  <div className="text-gray-600">
-    Designed & Developed by Octane
+
+  {/* DIVIDER */}
+  <div className="w-24 h-px bg-gold/30 mx-auto" />
+
+  {/* COPYRIGHT */}
+  <div className="space-y-1">
+    <div>© 2026 Omegastrike Esports · BGMI · India 🇮🇳</div>
+    <div className="text-gray-600">
+      Designed & Developed by Octane
+    </div>
   </div>
+
 </footer>
         </main>
       )}
