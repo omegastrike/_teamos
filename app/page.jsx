@@ -258,6 +258,71 @@ export default function Home() {
   </section>
 </Reveal>
 
+          {/* SPONSORS MARQUEE */}
+<section className="py-20 relative">
+
+  <h2 className="text-center text-3xl font-sequel mb-10">
+    Our Sponsors
+  </h2>
+
+  <div className="relative w-full overflow-x-hidden overflow-y-visible py-6">
+
+    {/* TOP/BOTTOM DEPTH OVERLAY */}
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-transparent pointer-events-none z-10" />
+
+    {/* LEFT FADE */}
+    {/* <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-black/80 to-transparent pointer-events-none z-20" /> */}
+
+    {/* RIGHT FADE */}
+    {/* <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-black/80 to-transparent pointer-events-none z-20" /> */}
+
+    {/* MARQUEE CONTAINER */}
+    <div className="flex gap-16 animate-marquee whitespace-nowrap relative z-0">
+
+      {[
+        "Your Brand Here",
+        "Official Partner",
+        "Title Sponsor",
+        "Now Partnering",
+        "Strategic Partner",
+        "Become a Sponsor",
+      ]
+        .concat([
+          "Your Brand Here",
+          "Official Partner",
+          "Title Sponsor",
+          "Now Partnering",
+          "Strategic Partner",
+          "Become a Sponsor",
+        ])
+        .map((name, i) => (
+          <div key={i} className="w-[240px] flex-shrink-0 flex justify-center">
+
+            {/* FLOAT WRAPPER (separate transform layer) */}
+            <div
+              style={{ animationDelay: `${i * 0.3}s` }}
+              className="float-soft w-full h-[110px] flex items-center justify-center text-center
+           px-6
+           backdrop-blur-md bg-white/[0.04]
+           border border-gold/20 rounded-2xl
+           opacity-70 hover:opacity-100
+           hover:border-gold
+           hover:shadow-[0_0_25px_rgba(212,175,55,0.15)]
+           hover:scale-[1.05]
+           transition-all duration-300"
+            >
+              <span className="text-gray-400 tracking-wider text-sm uppercase">
+                {name}
+              </span>
+            </div>
+
+          </div>
+        ))}
+
+    </div>
+  </div>
+</section>
+
           {/* SOCIALS */}
           <Reveal>
             <section className="py-24 px-6 text-center">
