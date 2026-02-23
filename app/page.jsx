@@ -325,47 +325,88 @@ export default function Home() {
 
           {/* SOCIALS */}
           <Reveal>
-            <section className="py-24 px-6 text-center">
-              <h2 className="text-3xl font-semibold mb-6">
-                {t.connectTitle}
-              </h2>
+  <section className="py-24 px-6 text-center">
+    <h2 className="text-3xl font-semibold mb-6">
+      {t.connectTitle}
+    </h2>
 
-              <div className="flex justify-center gap-6 mb-10 flex-wrap">
-                <a className="flex items-center gap-3 backdrop-blur-xl bg-glass border border-gold/30 rounded-full px-6 py-3 hover:scale-105 transition">
-                  <Instagram size={18} /> Instagram
-                </a>
-                <a className="flex items-center gap-3 backdrop-blur-xl bg-glass border border-gold/30 rounded-full px-6 py-3 hover:scale-105 transition">
-                  <Youtube size={18} /> YouTube
-                </a>
-                <a className="flex items-center gap-3 backdrop-blur-xl bg-glass border border-gold/30 rounded-full px-6 py-3 hover:scale-105 transition">
-                  <MessageCircle size={18} /> Discord
-                </a>
-              </div>
+    {/* SOCIAL LINKS */}
+    <div className="flex justify-center gap-6 mb-12 flex-wrap">
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link
-                  href="/apply"
-                  className="flex items-center justify-center h-12 px-8 rounded-full border border-gold/50 hover:bg-gold/10 transition"
-                >
-                  Apply to Clan
-                </Link>
+      {/* INSTAGRAM */}
+      <a
+        href="https://instagram.com/omegastrike.esports/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 backdrop-blur-xl bg-glass border border-gold/30 
+                   rounded-full px-6 py-3 
+                   hover:scale-105 hover:border-gold 
+                   hover:shadow-[0_0_25px_rgba(212,175,55,0.25)]
+                   transition-all duration-300"
+      >
+        <Instagram size={18} />
+        Instagram
+      </a>
 
-                <Link
-                  href="/partner"
-                  className="flex items-center justify-center h-12 px-10 rounded-full bg-gold text-black font-semibold hover:scale-105 transition"
-                >
-                  {t.partnerBtn}
-                </Link>
+      {/* YOUTUBE */}
+      <a
+        href="https://youtube.com/@octane29"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 backdrop-blur-xl bg-glass border border-gold/30 
+                   rounded-full px-6 py-3 
+                   hover:scale-105 hover:border-gold 
+                   hover:shadow-[0_0_25px_rgba(212,175,55,0.25)]
+                   transition-all duration-300"
+      >
+        <Youtube size={18} />
+        YouTube
+      </a>
 
-                <Link
-                  href="/contact"
-                  className="flex items-center justify-center h-12 px-8 rounded-full border border-gold/50 hover:bg-gold/10 transition"
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </section>
-          </Reveal>
+      {/* DISCORD */}
+      <a
+        href="https://discord.gg/myEtkWjawk"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 backdrop-blur-xl bg-glass border border-gold/30 
+                   rounded-full px-6 py-3 
+                   hover:scale-105 hover:border-gold 
+                   hover:shadow-[0_0_25px_rgba(212,175,55,0.25)]
+                   transition-all duration-300"
+      >
+        <MessageCircle size={18} />
+        Discord
+      </a>
+
+    </div>
+
+    {/* CTA BUTTONS */}
+    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+      <Link
+        href="/apply"
+        className="flex items-center justify-center h-12 px-8 rounded-full border border-gold/50 hover:bg-gold/10 transition"
+      >
+        Apply to Clan
+      </Link>
+
+      <Link
+        href="/partner"
+        className="flex items-center justify-center h-12 px-10 rounded-full bg-gold text-black font-semibold hover:scale-105 transition"
+      >
+        {t.partnerBtn}
+      </Link>
+
+      <Link
+        href="/contact"
+        className="flex items-center justify-center h-12 px-8 rounded-full border border-gold/50 hover:bg-gold/10 transition"
+      >
+        Contact Us
+      </Link>
+
+    </div>
+  </section>
+</Reveal>
 
           {/* FOOTER */}
           <footer className="py-10 text-center text-sm text-gray-500 space-y-4">
