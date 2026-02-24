@@ -101,6 +101,20 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+  async function fetchLatestNews() {
+    const { data } = await supabase
+      .from("news")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(3);
+
+    setNews(data || []);
+  }
+
+  fetchLatestNews();
+}, []);
+
   return (
     <>
       <Loader isLoading={loading} />
@@ -152,20 +166,6 @@ export default function Home() {
               </div>
             </section>
           </Reveal>
-
-          useEffect(() => {
-  async function fetchLatestNews() {
-    const { data } = await supabase
-      .from("news")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(3);
-
-    setNews(data || []);
-  }
-
-  fetchLatestNews();
-}, []);
 
           {/* ABOUT */}
           <Reveal>
