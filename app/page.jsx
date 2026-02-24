@@ -425,6 +425,51 @@ export default function Home() {
   </section>
 </Reveal>
 
+          {/* LATEST NEWS PREVIEW */}
+<section className="py-24 px-6">
+  <h2 className="text-center text-3xl font-semibold mb-12">
+    Latest News
+  </h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+    {news.map((article) => (
+      <Link
+        key={article.id}
+        href={`/news/${article.slug}`}
+        className="backdrop-blur-xl bg-glass border border-gold/30 rounded-2xl overflow-hidden hover:scale-105 transition"
+      >
+        {article.cover_image && (
+          <div
+            className="h-40 bg-cover bg-center"
+            style={{ backgroundImage: `url(${article.cover_image})` }}
+          />
+        )}
+
+        <div className="p-6">
+          <h3 className="text-lg font-semibold mb-2">
+            {article.title}
+          </h3>
+
+          <p className="text-gray-400 text-sm">
+            {article.excerpt}
+          </p>
+        </div>
+      </Link>
+    ))}
+
+  </div>
+
+  <div className="text-center mt-10">
+    <Link
+      href="/news"
+      className="inline-flex items-center justify-center h-12 px-8 rounded-full border border-gold/50 hover:bg-gold/10 transition"
+    >
+      View All News
+    </Link>
+  </div>
+</section>
+
           {/* FOOTER */}
           <footer className="py-10 text-center text-sm text-gray-500 space-y-4">
 
