@@ -79,6 +79,7 @@ export default function Navbar({ language, setLanguage }) {
           <MobileNavItem href="/media" label="Media Kit" setOpen={setOpen} />
           <MobileNavItem href="/contact" label="Contact" setOpen={setOpen} />
           <MobileNavItem href="/highlights" label="Highlights" setOpen={setOpen} />
+          <NavItem href="/news" label="News" pathname={pathname}/>
 
           <button
             onClick={() => {
@@ -128,4 +129,5 @@ function MobileNavItem({ href, label, setOpen }) {
     </Link>
   );
 }
+
 
