@@ -45,6 +45,9 @@ const founders = [
 
 
 export default function Home() {
+  
+  const [news, setNews] = useState([]);
+  
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("en");
 
@@ -149,6 +152,20 @@ export default function Home() {
               </div>
             </section>
           </Reveal>
+
+          useEffect(() => {
+  async function fetchLatestNews() {
+    const { data } = await supabase
+      .from("news")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(3);
+
+    setNews(data || []);
+  }
+
+  fetchLatestNews();
+}, []);
 
           {/* ABOUT */}
           <Reveal>
