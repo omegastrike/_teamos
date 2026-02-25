@@ -1005,96 +1005,83 @@ export default function Home() {
 </section>
 
 {/* FOOTER */}
-<footer className="border-t border-gold/10 bg-black py-16 px-4 sm:px-6">
+<footer className="border-t border-gold/10 bg-black">
 
-  <div className="max-w-7xl mx-auto">
+  {/* DESKTOP FOOTER */}
+  <div className="hidden md:block py-16 px-6">
+    <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-sm">
 
-    {/* TOP GRID */}
-    <div className="
-      grid 
-      grid-cols-1 
-      sm:grid-cols-2 
-      lg:grid-cols-4 
-      gap-12
-      text-sm
-    ">
-
-      {/* COLUMN 1 */}
-      <div className="space-y-4 text-center sm:text-left">
-        <h4 className="font-semibold text-white">
-          Omegastrike
-        </h4>
-        <p className="text-gray-400 leading-relaxed max-w-xs mx-auto sm:mx-0">
+      <div>
+        <h4 className="font-semibold mb-4">Omegastrike</h4>
+        <p className="text-gray-400">
           Professional BGMI esports organization competing
           at national and international levels.
         </p>
       </div>
 
-      {/* COLUMN 2 */}
-      <div className="space-y-4 text-center sm:text-left">
-        <h4 className="font-semibold text-white">
-          Organization
-        </h4>
+      <div>
+        <h4 className="font-semibold mb-4">Organization</h4>
         <ul className="space-y-2 text-gray-400">
-          <li><Link href="/" className="hover:text-white transition">Home</Link></li>
-          <li><Link href="/news" className="hover:text-white transition">News</Link></li>
-          <li><Link href="/media" className="hover:text-white transition">Media Kit</Link></li>
-          <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/news">News</Link></li>
+          <li><Link href="/media">Media Kit</Link></li>
         </ul>
       </div>
 
-      {/* COLUMN 3 */}
-      <div className="space-y-4 text-center sm:text-left">
-        <h4 className="font-semibold text-white">
-          Competitive
-        </h4>
+      <div>
+        <h4 className="font-semibold mb-4">Competitive</h4>
         <ul className="space-y-2 text-gray-400">
-          <li><Link href="/apply" className="hover:text-white transition">Join Team</Link></li>
-          <li><Link href="/highlights" className="hover:text-white transition">Highlights</Link></li>
-          <li><Link href="/players/head" className="hover:text-white transition">Roster</Link></li>
+          <li><Link href="/apply">Join Team</Link></li>
+          <li><Link href="/highlights">Highlights</Link></li>
         </ul>
       </div>
 
-      {/* COLUMN 4 */}
-      <div className="space-y-4 text-center sm:text-left">
-        <h4 className="font-semibold text-white">
-          Contact
-        </h4>
-
-        <div className="space-y-2 text-gray-400">
-          <p>support@omegastrike.in</p>
-          <p>admin@omegastrike.in</p>
-        </div>
-
-        {/* Social Links */}
-        <div className="flex justify-center sm:justify-start gap-4 pt-3">
-          <a
-            href="https://instagram.com/"
-            target="_blank"
-            className="hover:text-white transition"
-          >
-            Instagram
-          </a>
-
-          <a
-            href="https://discord.gg/"
-            target="_blank"
-            className="hover:text-white transition"
-          >
-            Discord
-          </a>
-        </div>
-
+      <div>
+        <h4 className="font-semibold mb-4">Contact</h4>
+        <p className="text-gray-400">support@omegastrike.in</p>
+        <p className="text-gray-400">admin@omegastrike.in</p>
       </div>
 
     </div>
-
-    {/* DIVIDER */}
-    <div className="mt-14 border-t border-gold/10 pt-6 text-center text-xs text-gray-500">
-      © 2026 Omegastrike Esports. All rights reserved.
-    </div>
-
   </div>
+
+  {/* MOBILE FOOTER BAR */}
+  <div className="md:hidden py-4 px-4">
+    <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-gray-400">
+
+      {/* LEFT */}
+      <div className="font-semibold text-white tracking-wide">
+        OMEGASTRIKE
+      </div>
+
+      {/* CENTER LINKS */}
+      <div className="flex items-center gap-4">
+        <Link href="/news" className="hover:text-white transition">
+          News
+        </Link>
+        <Link href="/apply" className="hover:text-white transition">
+          Join
+        </Link>
+      </div>
+
+      {/* RIGHT SOCIALS */}
+      <div className="flex items-center gap-3">
+        <a href="https://instagram.com" target="_blank">
+          IG
+        </a>
+        <a href="https://discord.gg" target="_blank">
+          DC
+        </a>
+      </div>
+
+    </div>
+
+    {/* COPYRIGHT LINE */}
+    <div className="text-center text-[10px] text-gray-600 mt-3">
+      © 2026 Omegastrike
+    </div>
+  </div>
+
 </footer>
         </main>
       )}
