@@ -661,27 +661,28 @@ export default function Home() {
       {!loading && (
         <main className="pt-24 overflow-x-hidden">
 
-          {/* HERO — Corporate Tech Style */}
-<section className="relative min-h-screen flex items-center px-6">
+          {/* HERO — Corporate Tech Style (Responsive Fixed) */}
+<section className="relative flex items-center px-4 sm:px-6 pt-28 pb-20 md:pt-36 md:pb-28 min-h-[90vh] overflow-hidden">
 
   {/* Background gradient layer */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(212,175,55,0.08),transparent_60%)]" />
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(212,175,55,0.08),transparent_60%)] pointer-events-none" />
 
-  <div className="relative max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+  <div className="relative max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
     {/* LEFT CONTENT */}
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8 text-center md:text-left">
 
-      <h1 className="text-5xl md:text-7xl font-sequel leading-tight">
+      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-sequel leading-tight">
         OMEGASTRIKE
       </h1>
 
-      <p className="text-lg text-gray-400 max-w-xl">
+      <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-xl mx-auto md:mx-0">
         Professional BGMI Esports Organization built on structure,
         discipline, and competitive excellence.
       </p>
 
-      <div className="flex gap-4 pt-4">
+      <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+
         <Link
           href="/apply"
           className="px-8 h-12 flex items-center justify-center rounded-md bg-gold text-black font-semibold hover:opacity-90 transition"
@@ -695,21 +696,26 @@ export default function Home() {
         >
           Latest News
         </Link>
+
       </div>
 
     </div>
 
     {/* RIGHT VISUAL */}
-    <div className="hidden md:flex justify-center">
-      <div className="relative w-[420px] h-[420px] rounded-full bg-gradient-to-br from-gold/10 to-transparent border border-gold/20 flex items-center justify-center">
+    <div className="flex justify-center md:justify-end">
+
+      <div className="relative w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] rounded-full bg-gradient-to-br from-gold/10 to-transparent border border-gold/20 flex items-center justify-center">
+
         <Image
           src="/logo.png"
           alt="Omegastrike Logo"
-          width={260}
-          height={260}
-          className="opacity-90"
+          width={200}
+          height={200}
+          className="opacity-90 w-[140px] sm:w-[180px] md:w-[220px] h-auto"
         />
+
       </div>
+
     </div>
 
   </div>
