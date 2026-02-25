@@ -1046,7 +1046,6 @@ export default function Home() {
   </div>
 
   {/* MOBILE FOOTER BAR */}
-  {/* MOBILE FOOTER BAR */}
 <div className="md:hidden py-4 px-4 border-t border-gold/10">
   <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-gray-400">
 
@@ -1069,7 +1068,7 @@ export default function Home() {
     <div className="flex items-center gap-4">
 
       <a
-        href="https://instagram.com/yourpage"
+        href="https://instagram.com/omegastrike.esports"
         target="_blank"
         rel="noopener noreferrer"
         className="hover:text-white transition"
@@ -1078,7 +1077,7 @@ export default function Home() {
       </a>
 
       <a
-        href="https://discord.gg/yourinvite"
+        href="https://discord.gg/myEtkWjawk"
         target="_blank"
         rel="noopener noreferrer"
         className="hover:text-white transition"
