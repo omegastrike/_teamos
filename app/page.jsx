@@ -1046,41 +1046,55 @@ export default function Home() {
   </div>
 
   {/* MOBILE FOOTER BAR */}
-  <div className="md:hidden py-4 px-4">
-    <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-gray-400">
+  {/* MOBILE FOOTER BAR */}
+<div className="md:hidden py-4 px-4 border-t border-gold/10">
+  <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-gray-400">
 
-      {/* LEFT */}
-      <div className="font-semibold text-white tracking-wide">
-        OMEGASTRIKE
-      </div>
+    {/* LEFT */}
+    <div className="font-semibold text-white tracking-wide">
+      OMEGASTRIKE
+    </div>
 
-      {/* CENTER LINKS */}
-      <div className="flex items-center gap-4">
-        <Link href="/news" className="hover:text-white transition">
-          News
-        </Link>
-        <Link href="/apply" className="hover:text-white transition">
-          Join
-        </Link>
-      </div>
+    {/* CENTER LINKS */}
+    <div className="flex items-center gap-4">
+      <Link href="/news" className="hover:text-white transition">
+        News
+      </Link>
+      <Link href="/apply" className="hover:text-white transition">
+        Join
+      </Link>
+    </div>
 
-      {/* RIGHT SOCIALS */}
-      <div className="flex items-center gap-3">
-        <a href="https://instagram.com" target="_blank">
-          IG
-        </a>
-        <a href="https://discord.gg" target="_blank">
-          DC
-        </a>
-      </div>
+    {/* RIGHT SOCIAL ICONS */}
+    <div className="flex items-center gap-4">
+
+      <a
+        href="https://instagram.com/yourpage"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-white transition"
+      >
+        <Instagram size={18} />
+      </a>
+
+      <a
+        href="https://discord.gg/yourinvite"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-white transition"
+      >
+        <MessageCircle size={18} />
+      </a>
 
     </div>
 
-    {/* COPYRIGHT LINE */}
-    <div className="text-center text-[10px] text-gray-600 mt-3">
-      © 2026 Omegastrike
-    </div>
   </div>
+
+  {/* COPYRIGHT */}
+  <div className="text-center text-[10px] text-gray-600 mt-3">
+    © 2026 Omegastrike
+  </div>
+</div>
 
 </footer>
         </main>
