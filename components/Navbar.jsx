@@ -50,6 +50,7 @@ export default function Navbar({ language, setLanguage }) {
           <NavItem href="/contact" label="Contact" pathname={pathname} />
           <NavItem href="/highlights" label="Highlights" pathname={pathname}/>
           <NavItem href="/news" label="News" pathname={pathname}/>
+          <NavItem href="/achievements" label="Achievements" pathname={pathname}/>
 
           {/* LANGUAGE TOGGLE */}
           <button
@@ -129,6 +130,7 @@ function MobileNavItem({ href, label, setOpen }) {
     </Link>
   );
 }
+
 
 
 
