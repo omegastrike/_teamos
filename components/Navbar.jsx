@@ -50,7 +50,7 @@ export default function Navbar({ language, setLanguage }) {
           <NavItem href="/contact" label="Contact" pathname={pathname} />
           <NavItem href="/highlights" label="Highlights" pathname={pathname}/>
           <NavItem href="/news" label="News" pathname={pathname}/>
-          <NavItem href="/achievements" label="Achievements" />
+          <NavItem href="/achievements" label="Achievements" pathname={pathname}/>
 
           {/* LANGUAGE TOGGLE */}
           <button
@@ -81,8 +81,7 @@ export default function Navbar({ language, setLanguage }) {
           <MobileNavItem href="/media" label="Media Kit" setOpen={setOpen} />
           <MobileNavItem href="/contact" label="Contact" setOpen={setOpen} />
           <MobileNavItem href="/highlights" label="Highlights" setOpen={setOpen} />
-          <MobileNavItem href="/achievements" label="Achievements" setOpen={setOpen} />
-          
+
           <button
             onClick={() => {
               setLanguage(language === "en" ? "te" : "en");
@@ -131,5 +130,3 @@ function MobileNavItem({ href, label, setOpen }) {
     </Link>
   );
 }
-
-
