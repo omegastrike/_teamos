@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase";
 
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
 export default function NewsEditor() {
   const [news, setNews] = useState([]);
 
