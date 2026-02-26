@@ -130,7 +130,3 @@ function MobileNavItem({ href, label, setOpen }) {
     </Link>
   );
 }
-
-
-
-
