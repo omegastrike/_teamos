@@ -81,7 +81,8 @@ export default function Navbar({ language, setLanguage }) {
           <MobileNavItem href="/media" label="Media Kit" setOpen={setOpen} />
           <MobileNavItem href="/contact" label="Contact" setOpen={setOpen} />
           <MobileNavItem href="/highlights" label="Highlights" setOpen={setOpen} />
-
+          <MobileNavItem href="/achievements" label="Achievements" setOpen={setOpen} />
+          
           <button
             onClick={() => {
               setLanguage(language === "en" ? "te" : "en");
@@ -130,3 +131,4 @@ function MobileNavItem({ href, label, setOpen }) {
     </Link>
   );
 }
+
