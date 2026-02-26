@@ -1,152 +1,61 @@
-// "use client";
-
-// import { useState } from "react";
-
-// export default function AdminPage() {
-//   const [password, setPassword] = useState("");
-//   const [authorized, setAuthorized] = useState(false);
-//   const [error, setError] = useState("");
-
-//   function handleLogin(e) {
-//     e.preventDefault();
-
-//     if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
-//       setAuthorized(true);
-//       setError("");
-//     } else {
-//       setError("Invalid password");
-//     }
-//   }
-
-//   if (!authorized) {
-//     return (
-//       <main className="min-h-screen flex items-center justify-center bg-black px-6">
-//         <form
-//           onSubmit={handleLogin}
-//           className="w-full max-w-sm backdrop-blur-xl bg-glass border border-gold/30 rounded-xl p-8"
-//         >
-//           <h1 className="text-2xl font-semibold mb-4 text-center">
-//             Admin Login
-//           </h1>
-
-//           <input
-//             type="password"
-//             placeholder="Enter admin password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             className="w-full px-4 py-3 rounded-lg bg-black/40 border border-gold/30 outline-none mb-3"
-//           />
-
-//           {error && (
-//             <p className="text-red-400 text-sm mb-3 text-center">
-//               {error}
-//             </p>
-//           )}
-
-//           <button className="w-full h-12 rounded-full bg-gold text-black font-semibold">
-//             Login
-//           </button>
-//         </form>
-//       </main>
-//     );
-//   }
-
-//   return (
-//     <main className="min-h-screen pt-24 px-6 bg-black text-white">
-//       <h1 className="text-3xl font-bold mb-6">
-//         Omegastrike Admin Dashboard
-//       </h1>
-
-//       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-//         <AdminCard
-//           title="Manage Players"
-//           desc="Edit player names, roles & stats"
-//           link="/admin/players"
-//         />
-
-//         <AdminCard
-//           title="Achievements"
-//           desc="Update tournaments & results"
-//           link="/admin/achievements"
-//         />
-
-//         <AdminCard
-//           title="Forms"
-//           desc="View applications & messages"
-//           link="https://formspree.io/forms"
-//           external
-//         />
-
-//       </div>
-//     </main>
-//   );
-// }
-
-// function AdminCard({ title, desc, link, external }) {
-//   return (
-//     <a
-//       href={link}
-//       target={external ? "_blank" : "_self"}
-//       className="backdrop-blur-xl bg-glass border border-gold/30 rounded-xl p-6 hover:scale-105 transition"
-//     >
-//       <h2 className="text-xl font-semibold mb-2">{title}</h2>
-//       <p className="text-gray-400 text-sm">{desc}</p>
-//     </a>
-//   );
-// }
-
-
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 import PlayersEditor from "./sections/PlayersEditor";
 import NewsEditor from "./sections/NewsEditor";
+import AchievementsEditor from "./sections/AchievementsEditor";
 
 export default function AdminPage() {
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [tab, setTab] = useState("players");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [authorized, setAuthorized] = useState(false);
-  const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState("players");
 
-  function handleLogin(e) {
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setLoading(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_e, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function login(e) {
     e.preventDefault();
-
-    if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
-      setAuthorized(true);
-      setError("");
-    } else {
-      setError("Invalid password");
-    }
+    await supabase.auth.signInWithPassword({ email, password });
   }
 
-  /* LOGIN SCREEN */
-  if (!authorized) {
-    return (
-      <main className="min-h-screen flex items-center justify-center bg-black px-6">
-        <form
-          onSubmit={handleLogin}
-          className="w-full max-w-sm backdrop-blur-xl bg-glass border border-gold/30 rounded-xl p-8"
-        >
-          <h1 className="text-2xl font-semibold mb-4 text-center">
-            Admin Login
-          </h1>
+  async function logout() {
+    await supabase.auth.signOut();
+  }
 
+  if (loading) return null;
+
+  if (!session) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-black">
+        <form onSubmit={login} className="space-y-4 w-80">
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 bg-black border border-gold/30 rounded"
+          />
           <input
             type="password"
-            placeholder="Enter admin password"
-            value={password}
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg bg-black/40 border border-gold/30 outline-none mb-3"
+            className="w-full p-3 bg-black border border-gold/30 rounded"
           />
-
-          {error && (
-            <p className="text-red-400 text-sm mb-3 text-center">
-              {error}
-            </p>
-          )}
-
-          <button className="w-full h-12 rounded-full bg-gold text-black font-semibold">
+          <button className="w-full h-12 bg-gold text-black rounded">
             Login
           </button>
         </form>
@@ -154,38 +63,27 @@ export default function AdminPage() {
     );
   }
 
-  /* DASHBOARD */
   return (
-    <main className="min-h-screen pt-24 px-6 bg-black text-white">
-      <h1 className="text-3xl font-bold mb-10">
-        Omegastrike Admin Dashboard
-      </h1>
+    <main className="min-h-screen bg-black text-white p-8">
+      <div className="flex justify-between mb-8">
+        <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+        <button onClick={logout} className="text-red-400">
+          Logout
+        </button>
+      </div>
 
-      {/* TOP NAV TABS */}
-      <div className="flex flex-wrap gap-4 mb-10 border-b border-gold/20 pb-4">
-        <Tab
-          label="Players"
-          active={activeTab === "players"}
-          onClick={() => setActiveTab("players")}
-        />
-        <Tab
-          label="News"
-          active={activeTab === "news"}
-          onClick={() => setActiveTab("news")}
-        />
-
-        <a
-          href="https://formspree.io/forms"
-          target="_blank"
-          className="px-6 py-2 border border-gold/30 rounded-md hover:bg-gold/10 transition"
-        >
+      <div className="flex gap-4 mb-10">
+        <Tab label="Players" active={tab==="players"} onClick={()=>setTab("players")} />
+        <Tab label="News" active={tab==="news"} onClick={()=>setTab("news")} />
+        <Tab label="Achievements" active={tab==="achievements"} onClick={()=>setTab("achievements")} />
+        <a href="https://formspree.io/forms" target="_blank" className="px-4 py-2 border border-gold/30 rounded">
           Forms
         </a>
       </div>
 
-      {/* CONTENT SWITCH */}
-      {activeTab === "players" && <PlayersEditor />}
-      {activeTab === "news" && <NewsEditor />}
+      {tab==="players" && <PlayersEditor />}
+      {tab==="news" && <NewsEditor />}
+      {tab==="achievements" && <AchievementsEditor />}
     </main>
   );
 }
@@ -194,10 +92,8 @@ function Tab({ label, active, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`px-6 py-2 rounded-md transition ${
-        active
-          ? "bg-gold text-black"
-          : "border border-gold/30 hover:bg-gold/10"
+      className={`px-6 py-2 rounded ${
+        active ? "bg-gold text-black" : "border border-gold/30"
       }`}
     >
       {label}
