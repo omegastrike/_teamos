@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import BackgroundMusic from "@/components/BackgroundMusic";
+import CookieConsent from "../components/CookieConsent";
 
 /* English main font */
 const inter = Inter({
