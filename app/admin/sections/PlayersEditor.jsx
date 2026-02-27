@@ -44,6 +44,11 @@ export default function PlayersEditor() {
           matches: Number(player.matches),
           wins: Number(player.wins),
           bio: player.bio,
+          image_url: player.image_url,
+instagram: player.instagram,
+youtube: player.youtube,
+twitter: player.twitter,
+discord: player.discord,
         })
         .eq("id", player.id);
     }
