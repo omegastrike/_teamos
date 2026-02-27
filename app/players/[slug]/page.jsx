@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { User } from "lucide-react";
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { Instagram, Youtube, Twitter, MessageCircle } from "lucide-react";
 
 export default async function PlayerPage({ params }) {
   const { slug } = params;
@@ -52,6 +53,36 @@ export default async function PlayerPage({ params }) {
             </div>
           )}
 
+          {(player.instagram || player.youtube || player.twitter || player.discord) && (
+  <div className="mt-8 flex gap-4 flex-wrap">
+
+    {player.instagram && (
+      <a href={player.instagram} target="_blank" className="social-btn">
+        <Instagram size={18} />
+      </a>
+    )}
+
+    {player.youtube && (
+      <a href={player.youtube} target="_blank" className="social-btn">
+        <Youtube size={18} />
+      </a>
+    )}
+
+    {player.twitter && (
+      <a href={player.twitter} target="_blank" className="social-btn">
+        <Twitter size={18} />
+      </a>
+    )}
+
+    {player.discord && (
+      <a href={player.discord} target="_blank" className="social-btn">
+        <MessageCircle size={18} />
+      </a>
+    )}
+
+  </div>
+)}
+
           {/* STATS */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <StatCard label="K/D Ratio" value={player.kd} />
@@ -79,4 +110,5 @@ function StatCard({ label, value }) {
     </div>
   );
 }
+
 
