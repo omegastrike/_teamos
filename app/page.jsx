@@ -353,12 +353,23 @@ export default function Home() {
           <Link
             key={player.slug}
             href={`/players/${player.slug}`}
-            className="bg-neutral-900 border border-gold/10 p-8 rounded-lg hover:border-gold/30 transition group"
+            className="bg-neutral-900/70 backdrop-blur-sm border border-gold/10 p-8 rounded-xl hover:border-gold/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between min-h-[420px]"
           >
 
             {/* Avatar Placeholder */}
-            <div className="h-28 mb-6 bg-neutral-800 rounded-md" />
-
+            <div className="h-32 mb-6 flex items-center justify-center">
+  {player.image_url ? (
+    <img
+      src={player.image_url}
+      alt={player.name}
+      className="w-28 h-28 object-cover rounded-full border border-gold/30 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300"
+    />
+  ) : (
+    <div className="w-28 h-28 rounded-full bg-neutral-800 border border-gold/20 flex items-center justify-center text-2xl font-semibold text-gold">
+      {player.name?.charAt(0)}
+    </div>
+  )}
+</div>
             {/* Name */}
             <h3 className="text-lg font-semibold group-hover:text-gold transition">
               {player.name}
