@@ -112,6 +112,36 @@ export default function PlayersEditor() {
               textarea
             />
 
+            <Input
+  label="Profile Image URL"
+  value={p.image_url}
+  onChange={(v) => updateField(i, "image_url", v)}
+/>
+
+<Input
+  label="Instagram URL"
+  value={p.instagram}
+  onChange={(v) => updateField(i, "instagram", v)}
+/>
+
+<Input
+  label="YouTube URL"
+  value={p.youtube}
+  onChange={(v) => updateField(i, "youtube", v)}
+/>
+
+<Input
+  label="Twitter/X URL"
+  value={p.twitter}
+  onChange={(v) => updateField(i, "twitter", v)}
+/>
+
+<Input
+  label="Discord URL"
+  value={p.discord}
+  onChange={(v) => updateField(i, "discord", v)}
+/>
+
           </div>
         </div>
       ))}
