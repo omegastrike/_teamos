@@ -25,32 +25,37 @@ export default function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-auto max-w-4xl backdrop-blur-xl bg-black/80 border border-gold/30 rounded-2xl px-6 py-4 shadow-xl animate-fade-in">
+    <div className="fixed inset-x-0 bottom-4 z-50 px-4">
 
-      <div className="flex flex-col sm:flex-row items-center gap-4 justify-between">
+      <div className="mx-auto max-w-4xl backdrop-blur-xl bg-black/90 border border-gold/30 rounded-2xl shadow-xl p-5 animate-fade-in">
 
-        <p className="text-sm text-gray-300 text-center sm:text-left">
-          We use cookies to improve your experience and analyze traffic.
-        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
-        <div className="flex gap-3">
+          <p className="text-sm text-gray-300 text-center sm:text-left">
+            We use cookies to improve your experience and analyze traffic.
+          </p>
 
-          <button
-            onClick={declineCookies}
-            className="px-4 py-2 text-sm border border-gold/40 rounded-full hover:bg-gold/10 transition"
-          >
-            Decline
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
 
-          <button
-            onClick={acceptCookies}
-            className="px-5 py-2 text-sm rounded-full bg-gold text-black font-semibold hover:opacity-90 transition"
-          >
-            Accept
-          </button>
+            <button
+              onClick={declineCookies}
+              className="w-full sm:w-auto px-4 py-2 text-sm border border-gold/40 rounded-full hover:bg-gold/10 transition"
+            >
+              Decline
+            </button>
+
+            <button
+              onClick={acceptCookies}
+              className="w-full sm:w-auto px-5 py-2 text-sm rounded-full bg-gold text-black font-semibold hover:opacity-90 transition"
+            >
+              Accept
+            </button>
+
+          </div>
 
         </div>
       </div>
+
     </div>
   );
 }
