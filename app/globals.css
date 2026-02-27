@@ -129,3 +129,19 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(212,175,55,0.3);
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: rgba(212,175,55,0.1);
+  transform: translateY(-3px);
+  }
