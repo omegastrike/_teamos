@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import Reveal from "../../components/Reveal";
+import PageBackground from "../../components/PageBackground";
 
 export default function AchievementsPage() {
   const [achievements, setAchievements] = useState([]);
@@ -47,7 +48,8 @@ export default function AchievementsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen pt-32 px-6 bg-black text-white">
+  <PageBackground>
+    <main className="pt-32 px-4 md:px-6 text-white">
 
       {/* PAGE HEADER */}
       <div className="text-center mb-16">
@@ -113,5 +115,6 @@ export default function AchievementsPage() {
 
       </div>
     </main>
-  );
+  </PageBackground>
+);
 }
