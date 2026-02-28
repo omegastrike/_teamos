@@ -35,8 +35,8 @@ export default async function PlayerPage({ params }) {
           {player.name}
         </h1>
 
-        <p className="text-gold mb-8">
-          Role: {player.role}
+        <p className="inline-block mt-2 px-3 py-1 text-xs rounded-full bg-gold/10 text-gold border border-gold/20">
+          {player.role}
         </p>
 
         {/* BIO + STATS STACK */}
@@ -119,6 +119,7 @@ function StatCard({ label, value }) {
     </div>
   );
 }
+
 
 
 
