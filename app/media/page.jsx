@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Download, Mail, Instagram, Youtube } from "lucide-react";
+import PageBackground from "../../components/PageBackground";
 
 export const metadata = {
   title: "Media Kit | Omegastrike",
@@ -7,7 +8,8 @@ export const metadata = {
 
 export default function MediaPage() {
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-24">
+    <PageBackground>
+    <main className="pt-32 px-4 md:px-6 text-white max-w-6xl mx-auto">
       <div className="max-w-5xl mx-auto">
 
         {/* Title */}
@@ -82,5 +84,6 @@ export default function MediaPage() {
 
       </div>
     </main>
+    </PageBackground>
   );
 }
