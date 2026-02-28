@@ -19,7 +19,16 @@ export default async function PlayerPage({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-24">
+    <main className="relative min-h-screen text-white px-4 md:px-6 py-24 overflow-hidden">
+
+  {/* Background radial glow */}
+  <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.08),transparent_60%)]" />
+
+  {/* Subtle bottom glow */}
+  <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_80%,rgba(212,175,55,0.05),transparent_70%)]" />
+  <div className="absolute inset-0 -z-20 bg-no-repeat bg-center bg-cover opacity-5"
+     style={{ backgroundImage: "url('/bg-texture.png')" }}
+/>
       <div className="max-w-4xl mx-auto">
 
         <h1 className="text-4xl font-bold mb-2">
@@ -110,5 +119,6 @@ function StatCard({ label, value }) {
     </div>
   );
 }
+
 
 
