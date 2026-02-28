@@ -1,10 +1,12 @@
 "use client";
 
-import Reveal from "@/components/Reveal";
+import Reveal from "../../components/Reveal";
+import PageBackground from "../../components/PageBackground";
 
 export default function HighlightsPage() {
   return (
-    <main className="min-h-screen bg-black text-white pt-28 px-6">
+    <PageBackground>
+    <main className="pt-32 px-4 md:px-6 text-white max-w-6xl mx-auto">
 
       <h1 className="text-4xl md:text-5xl font-bold text-center mb-16">
         Gameplay Highlights
@@ -35,5 +37,6 @@ export default function HighlightsPage() {
 
       </div>
     </main>
+    </PageBackground>
   );
 }
