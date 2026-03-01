@@ -59,7 +59,8 @@ const founders = [
 
 export default function Home() {
 
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState([]); /* real-time news data fetching*/
+  const [newsLoading, setNewsLoading] = useState(true);
 
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("en");
