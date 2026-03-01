@@ -129,6 +129,42 @@ export default function Home() {
   fetchLatestNews();
 }, []);
 
+  useEffect(() => {
+  let channel;
+
+  async function fetchNews(isRealtime = false) {
+    if (!isRealtime) setNewsLoading(true);
+
+    const { data, error } = await supabase
+      .from("news")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(3);
+
+    if (!error) {
+      setNews(data || []);
+    }
+
+    if (!isRealtime) setNewsLoading(false);
+  }
+
+  fetchNews(false);
+
+  channel = supabase
+    .channel("news-live")
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "public", table: "news" },
+      () => fetchNews(true)
+    )
+    .subscribe();
+
+  return () => {
+    if (channel) supabase.removeChannel(channel);
+  };
+}, []);
+
+
   return (
     <>
       <Loader isLoading={loading} />
