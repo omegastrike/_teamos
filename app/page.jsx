@@ -291,65 +291,85 @@ export default function Home() {
   </div>
 </section>
 
-{/* FEATURED NEWS */}
+{/* LATEST NEWS */}
 <section className="py-32 px-6 border-t border-gold/10">
   <div className="max-w-7xl mx-auto">
 
     {/* Header */}
-    <div className="flex justify-between items-end mb-16">
+    <div className="flex justify-between items-end mb-14">
       <div>
-        <h2 className="text-4xl font-sequel mb-4">
+        <h2 className="text-4xl font-sequel mb-3">
           Latest News
         </h2>
         <p className="text-gray-400 max-w-xl">
-          Official announcements, tournament updates,
-          and organizational developments.
+          Official updates, roster changes and tournament results.
         </p>
       </div>
 
       <Link
         href="/news"
-        className="hidden md:inline-block text-sm border-b border-gold/40 hover:border-gold transition"
+        className="text-sm text-gold hover:underline hidden sm:block"
       >
         View All →
       </Link>
     </div>
 
+    {/* Loading */}
+    {newsLoading && (
+      <p className="text-center text-gray-400">
+        Loading latest news...
+      </p>
+    )}
+
+    {/* Empty */}
+    {!newsLoading && news.length === 0 && (
+      <p className="text-center text-gray-400">
+        No news published yet.
+      </p>
+    )}
+
     {/* News Grid */}
-    <div className="grid md:grid-cols-3 gap-10">
+    <div className="grid md:grid-cols-3 gap-8">
 
-      {[1, 2, 3].map((item) => (
-        <div
-          key={item}
-          className="bg-neutral-900 border border-gold/10 rounded-lg overflow-hidden hover:border-gold/30 transition"
-        >
-          {/* Image Placeholder */}
-          <div className="h-48 bg-neutral-800" />
+      {!newsLoading &&
+        news.map((item) => (
+          <Link
+            key={item.id}
+            href={`/news/${item.slug}`}
+            className="group bg-neutral-900 border border-gold/10 rounded-xl overflow-hidden hover:border-gold/30 transition duration-300"
+          >
 
-          {/* Content */}
-          <div className="p-8 space-y-4">
-            <p className="text-xs text-gold uppercase tracking-wider">
-              Tournament Update
-            </p>
+            {/* Cover Image */}
+            {item.cover_image && (
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={item.cover_image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+              </div>
+            )}
 
-            <h3 className="text-lg font-semibold">
-              Omegastrike Qualifies for BGMI Invitational
-            </h3>
+            {/* Content */}
+            <div className="p-6">
 
-            <p className="text-gray-400 text-sm leading-relaxed">
-              The team secured qualification through consistent
-              performance across regional circuits.
-            </p>
+              <p className="text-xs text-gray-500 mb-3">
+                {new Date(item.created_at).toLocaleDateString()}
+              </p>
 
-            <Link
-              href="/news"
-              className="text-sm text-gray-300 hover:text-white transition"
-            >
-              Read More →
-            </Link>
-          </div>
-        </div>
-      ))}
+              <h3 className="text-lg font-semibold group-hover:text-gold transition">
+                {item.title}
+              </h3>
+
+              {item.summary && (
+                <p className="text-sm text-gray-400 mt-3 line-clamp-3">
+                  {item.summary}
+                </p>
+              )}
+
+            </div>
+          </Link>
+        ))}
 
     </div>
 
