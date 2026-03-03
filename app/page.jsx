@@ -545,6 +545,8 @@ export default function Home() {
   </div>
 </section>
 
+<Newsletter></Newsletter>
+
 {/* FOOTER */}
 <footer className="border-t border-gold/10 bg-black">
 
