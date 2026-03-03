@@ -44,13 +44,13 @@ export default function Navbar({ language, setLanguage }) {
 
         {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center gap-8 text-sm">
-          <NavItem href="/apply" label="Apply" pathname={pathname} />
-          <NavItem href="/partner" label="Partner" pathname={pathname} />
-          <NavItem href="/media" label="Media Kit" pathname={pathname} />
-          <NavItem href="/contact" label="Contact" pathname={pathname} />
-          <NavItem href="/highlights" label="Highlights" pathname={pathname}/>
-          <NavItem href="/news" label="News" pathname={pathname}/>
-          <NavItem href="/achievements" label="Achievements" pathname={pathname}/>
+          <NavItem href="/apply" label="APPLY" pathname={pathname} />
+          <NavItem href="/partner" label="PARTNER" pathname={pathname} />
+          <NavItem href="/media" label="MEDIA KIT" pathname={pathname} />
+          <NavItem href="/contact" label="CONTACT" pathname={pathname} />
+          <NavItem href="/highlights" label="HIGHLIGHTS" pathname={pathname}/>
+          <NavItem href="/news" label="NEWS" pathname={pathname}/>
+          <NavItem href="/achievements" label="ACHIEVEMENTS" pathname={pathname}/>
 
           {/* LANGUAGE TOGGLE */}
           <button
@@ -132,4 +132,5 @@ function MobileNavItem({ href, label, setOpen }) {
     </Link>
   );
 }
+
 
