@@ -12,7 +12,7 @@ const inter = Inter({
 
 /* ✅ Local Telugu font */
 const teluguFont = localFont({
-  src: "../app/fonts/font_telugu.woff2", // MUST be inside /app/fonts
+  src: "../app/fonts/font_telugu.ttf", // MUST be inside /app/fonts
   variable: "font_telugu",
   display: "swap",
 });
