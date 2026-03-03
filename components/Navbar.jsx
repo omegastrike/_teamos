@@ -76,11 +76,13 @@ export default function Navbar({ language, setLanguage }) {
       {/* MOBILE MENU */}
       {open && (
         <div className="md:hidden backdrop-blur-xl bg-black/80 border-t border-gold/30 px-6 py-6 space-y-4">
-          <MobileNavItem href="/apply" label="Apply" setOpen={setOpen} />
-          <MobileNavItem href="/partner" label="Partner" setOpen={setOpen} />
-          <MobileNavItem href="/media" label="Media Kit" setOpen={setOpen} />
-          <MobileNavItem href="/contact" label="Contact" setOpen={setOpen} />
-          <MobileNavItem href="/highlights" label="Highlights" setOpen={setOpen} />
+          <MobileNavItem href="/apply" label="APPLY" setOpen={setOpen} />
+          <MobileNavItem href="/partner" label="PARTNER" setOpen={setOpen} />
+          <MobileNavItem href="/news" label="NEWS" setOpen={setOpen} />
+          <MobileNavItem href="/media" label="MEDIA" setOpen={setOpen} />
+          <MobileNavItem href="/contact" label="CONTACT" setOpen={setOpen} />
+          <MobileNavItem href="/highlights" label="HIGHLIGHTS" setOpen={setOpen} />
+          <MobileNavItem href="/achievements" label="ACHIVS" setOpen={setOpen} />
 
           <button
             onClick={() => {
@@ -130,3 +132,4 @@ function MobileNavItem({ href, label, setOpen }) {
     </Link>
   );
 }
+
