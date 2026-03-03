@@ -9,6 +9,7 @@ import Reveal from "../components/Reveal";
 import Navbar from "../components/Navbar";
 import { translations } from "../lib/translations";
 import { supabase } from "../lib/supabase";
+import Newsletter from "../components/Newsletter";
 
 import {
   Instagram,
