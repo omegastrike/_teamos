@@ -51,6 +51,7 @@ export default function Navbar({ language, setLanguage }) {
           <NavItem href="/highlights" label="HIGHLIGHTS" pathname={pathname}/>
           <NavItem href="/news" label="NEWS" pathname={pathname}/>
           <NavItem href="/achievements" label="ACHIEVEMENTS" pathname={pathname}/>
+          <NavItem href="/organization" label="Org" pathname={pathname}/>
 
           {/* LANGUAGE TOGGLE */}
           <button
@@ -83,6 +84,7 @@ export default function Navbar({ language, setLanguage }) {
           <MobileNavItem href="/contact" label="CONTACT" setOpen={setOpen} />
           <MobileNavItem href="/highlights" label="HIGHLIGHTS" setOpen={setOpen} />
           <MobileNavItem href="/achievements" label="ACHIVS" setOpen={setOpen} />
+          <MobileNavItem href="/organization" label="Org" setOpen={setOpen} />
 
           <button
             onClick={() => {
@@ -132,5 +134,6 @@ function MobileNavItem({ href, label, setOpen }) {
     </Link>
   );
 }
+
 
 
