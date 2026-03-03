@@ -23,6 +23,12 @@ export const metadata = {
     default: "Omegastrike Esports",
     template: "%s | Omegastrike",
   },
+
+  icons: {
+    icon: "/favicon.png",
+    // apple: "/apple-icon.png",
+  },
+  
   description:
     "Omegastrike is a professional BGMI esports organization from India competing in national tournaments.",
   keywords: [
