@@ -9,7 +9,6 @@ import Reveal from "../components/Reveal";
 import Navbar from "../components/Navbar";
 import { translations } from "../lib/translations";
 import { supabase } from "../lib/supabase";
-import Newsletter from "../components/Newsletter";
 
 import {
   Instagram,
@@ -22,6 +21,8 @@ import {
   Mail, 
   ShieldCheck,
 } from "lucide-react";
+
+import Newsletter from "../components/NewsLetter";
 
 /* ROLE → ICON MAP */
 const roleIcons = {
@@ -60,9 +61,6 @@ const founders = [
 
 export default function Home() {
 
-  const [news, setNews] = useState([]); /* real-time news data fetching*/
-  const [newsLoading, setNewsLoading] = useState(true);
-
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("en");
 
@@ -70,6 +68,9 @@ export default function Home() {
   const [playersLoading, setPlayersLoading] = useState(true);
 
   const t = translations[language];
+
+  const [news, setNews] = useState([]);
+  const [newsLoading, setNewsLoading] = useState(true);
 
   /* Page loader delay */
   useEffect(() => {
@@ -114,23 +115,9 @@ export default function Home() {
     return () => {
       if (channel) supabase.removeChannel(channel);
     };
-  }, []);
-
-  useEffect(() => {
-  async function fetchLatestNews() {
-    const { data } = await supabase
-      .from("news")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(3);
-
-    setNews(data || []);
-  }
-
-  fetchLatestNews();
 }, []);
 
-  useEffect(() => {
+useEffect(() => {
   let channel;
 
   async function fetchNews(isRealtime = false) {
@@ -164,7 +151,6 @@ export default function Home() {
     if (channel) supabase.removeChannel(channel);
   };
 }, []);
-
 
   return (
     <>
@@ -416,18 +402,19 @@ export default function Home() {
 
             {/* Avatar Placeholder */}
             <div className="h-32 mb-6 flex items-center justify-center">
-  {player.image_url ? (
-    <img
-      src={player.image_url}
-      alt={player.name}
-      className="w-28 h-28 object-cover rounded-full border border-gold/30 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300"
-    />
-  ) : (
-    <div className="w-28 h-28 rounded-full bg-neutral-800 border border-gold/20 flex items-center justify-center text-2xl font-semibold text-gold">
-      {player.name?.charAt(0)}
-    </div>
-  )}
-</div>
+              {player.image_url ? (
+                 <img
+                   src={player.image_url}
+                   alt={player.name}
+                   className="w-28 h-28 object-cover rounded-full border border-gold/30 group-hover:border-gold transition"
+                />
+              ) : (
+                  <div className="w-28 h-28 rounded-full bg-neutral-800 border border-gold/20 flex items-center justify-center text-2xl font-semibold text-gold">
+                    {player.name?.charAt(0)}
+                  </div>
+                  )}
+            </div>
+
             {/* Name */}
             <h3 className="text-lg font-semibold group-hover:text-gold transition">
               {player.name}
@@ -549,101 +536,120 @@ export default function Home() {
 <Newsletter></Newsletter>
 
 {/* FOOTER */}
-<footer className="border-t border-gold/10 bg-black">
+<footer className="border-t border-gold/10 bg-black text-sm">
 
-  {/* DESKTOP FOOTER */}
+  {/* DESKTOP + TABLET */}
   <div className="hidden md:block py-16 px-6">
-    <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-sm">
+    <div className="max-w-7xl mx-auto grid md:grid-cols-3 lg:grid-cols-4 gap-12">
 
+      {/* BRAND */}
       <div>
-        <h4 className="font-semibold mb-4">Omegastrike</h4>
-        <p className="text-gray-400">
-          Professional BGMI esports organization competing
-          at national.
+        <h4 className="font-semibold mb-4 text-white">Omegastrike</h4>
+        <p className="text-gray-400 leading-relaxed">
+          Professional BGMI esports organization competing at national
+          tournaments and building the next generation of competitive talent.
         </p>
+
+        {/* SOCIAL */}
+        <div className="flex gap-4 mt-6 text-gray-400">
+          <a href="https://instagram.com/yourpage" target="_blank">
+            <Instagram size={18} className="hover:text-white transition"/>
+          </a>
+
+          <a href="https://discord.gg/yourinvite" target="_blank">
+            <MessageCircle size={18} className="hover:text-white transition"/>
+          </a>
+        </div>
       </div>
 
+      {/* ORGANIZATION */}
       <div>
-        <h4 className="font-semibold mb-4">Organization</h4>
+        <h4 className="font-semibold mb-4 text-white">Organization</h4>
         <ul className="space-y-2 text-gray-400">
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/news">News</Link></li>
-          <li><Link href="/media">Media Kit</Link></li>
+          <li><Link href="/" className="hover:text-white transition">Home</Link></li>
+          <li><Link href="/news" className="hover:text-white transition">News</Link></li>
+          <li><Link href="/organization" className="hover:text-white transition">Organization</Link></li>
+          <li><Link href="/media" className="hover:text-white transition">Media Kit</Link></li>
         </ul>
       </div>
 
+      {/* COMPETITIVE */}
       <div>
-        <h4 className="font-semibold mb-4">Competitive</h4>
+        <h4 className="font-semibold mb-4 text-white">Competitive</h4>
         <ul className="space-y-2 text-gray-400">
-          <li><Link href="/apply">Join Team</Link></li>
-          <li><Link href="/highlights">Highlights</Link></li>
+          <li><Link href="/apply" className="hover:text-white transition">Join Team</Link></li>
+          <li><Link href="/highlights" className="hover:text-white transition">Highlights</Link></li>
+          <li><Link href="/achievements" className="hover:text-white transition">Achievements</Link></li>
         </ul>
       </div>
 
+      {/* CONTACT */}
       <div>
-        <h4 className="font-semibold mb-4">Contact</h4>
+        <h4 className="font-semibold mb-4 text-white">Contact</h4>
         <p className="text-gray-400">support@omegastrike.in</p>
         <p className="text-gray-400">admin@omegastrike.in</p>
       </div>
 
-      <div className="flex justify-center gap-6 text-sm text-gray-500 mt-6">
-       <Link href="/privacy-policy">Privacy</Link>
-       <Link href="/terms">Terms</Link>
-       <Link href="/cookie-policy">Cookies</Link>
-      </div>
-
     </div>
   </div>
 
+
+  {/* BOTTOM BAR (ALL DEVICES) */}
+  <div className="border-t border-gold/10 py-6 px-6">
+
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+
+      {/* COPYRIGHT */}
+      <div>
+        © 2026 Omegastrike Esports
+      </div>
+
+      {/* LEGAL LINKS */}
+      <div className="flex items-center gap-6">
+        <Link href="/privacy-policy" className="hover:text-white transition">
+          Privacy
+        </Link>
+        <Link href="/terms" className="hover:text-white transition">
+          Terms
+        </Link>
+        <Link href="/cookie-policy" className="hover:text-white transition">
+          Cookies
+        </Link>
+      </div>
+
+    </div>
+
+  </div>
+
+
   {/* MOBILE FOOTER BAR */}
-<div className="md:hidden py-4 px-4 border-t border-gold/10">
-  <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-gray-400">
+  <div className="md:hidden fixed bottom-0 left-0 w-full bg-black border-t border-gold/10">
 
-    {/* LEFT */}
-    <div className="font-semibold text-white tracking-wide">
-      OMEGASTRIKE
-    </div>
+    <div className="flex items-center justify-around py-3 text-xs text-gray-400">
 
-    {/* CENTER LINKS */}
-    <div className="flex items-center gap-4">
-      <Link href="/news" className="hover:text-white transition">
-        News
+      <Link href="/" className="flex flex-col items-center gap-1 hover:text-white">
+        <span>Home</span>
       </Link>
-      <Link href="/apply" className="hover:text-white transition">
-        Join
+
+      <Link href="/news" className="flex flex-col items-center gap-1 hover:text-white">
+        <span>News</span>
       </Link>
-    </div>
 
-    {/* RIGHT SOCIAL ICONS */}
-    <div className="flex items-center gap-4">
-
-      <a
-        href="https://instagram.com/yourpage"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-white transition"
-      >
-        <Instagram size={18} />
-      </a>
+      <Link href="/apply" className="flex flex-col items-center gap-1 hover:text-white">
+        <span>Join</span>
+      </Link>
 
       <a
         href="https://discord.gg/yourinvite"
         target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-white transition"
+        className="flex flex-col items-center gap-1 hover:text-white"
       >
-        <MessageCircle size={18} />
+        <MessageCircle size={16}/>
       </a>
 
     </div>
 
   </div>
-
-  {/* COPYRIGHT */}
-  <div className="text-center text-[10px] text-gray-600 mt-3">
-    © 2026 Omegastrike
-  </div>
-</div>
 
 </footer>
         </main>
