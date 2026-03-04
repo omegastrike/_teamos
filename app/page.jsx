@@ -586,6 +586,12 @@ export default function Home() {
         <p className="text-gray-400">admin@omegastrike.in</p>
       </div>
 
+      <div className="flex justify-center gap-6 text-sm text-gray-500 mt-6">
+       <Link href="/privacy-policy">Privacy</Link>
+       <Link href="/terms">Terms</Link>
+       <Link href="/cookie-policy">Cookies</Link>
+      </div>
+
     </div>
   </div>
 
