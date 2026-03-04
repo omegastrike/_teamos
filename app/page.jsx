@@ -22,7 +22,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import Newsletter from "../components/NewsLetter";
+import Newsletter from "../components/Newsletter";
 
 /* ROLE → ICON MAP */
 const roleIcons = {
