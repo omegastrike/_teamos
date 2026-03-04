@@ -552,11 +552,11 @@ useEffect(() => {
 
         {/* SOCIAL */}
         <div className="flex gap-4 mt-6 text-gray-400">
-          <a href="https://instagram.com/yourpage" target="_blank">
+          <a href="https://instagram.com/omegastrike.esports/" target="_blank">
             <Instagram size={18} className="hover:text-white transition"/>
           </a>
 
-          <a href="https://discord.gg/yourinvite" target="_blank">
+          <a href="https://discord.gg/myEtkWjawk" target="_blank">
             <MessageCircle size={18} className="hover:text-white transition"/>
           </a>
         </div>
@@ -627,20 +627,20 @@ useEffect(() => {
 
     <div className="flex items-center justify-around py-3 text-xs text-gray-400">
 
-      <Link href="/" className="flex flex-col items-center gap-1 hover:text-white">
-        <span>Home</span>
+      <Link href="/privacy-policy" className="flex flex-col items-center gap-1 hover:text-white">
+        <span>Privacy</span>
       </Link>
 
-      <Link href="/news" className="flex flex-col items-center gap-1 hover:text-white">
-        <span>News</span>
+      <Link href="/terms" className="flex flex-col items-center gap-1 hover:text-white">
+        <span>Terms</span>
       </Link>
 
-      <Link href="/apply" className="flex flex-col items-center gap-1 hover:text-white">
-        <span>Join</span>
+      <Link href="/cookie-policy" className="flex flex-col items-center gap-1 hover:text-white">
+        <span>Cookies</span>
       </Link>
 
       <a
-        href="https://discord.gg/yourinvite"
+        href="https://discord.gg/myEtkWjawk"
         target="_blank"
         className="flex flex-col items-center gap-1 hover:text-white"
       >
