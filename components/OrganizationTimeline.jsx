@@ -1,94 +1,144 @@
 "use client";
 
+import Reveal from "./Reveal";
+
 export default function OrganizationTimeline() {
+
   const events = [
     {
       year: "2019",
       title: "Oxygen Esports Founded",
-      desc: "A group of passionate players formed Oxygen Esports to compete in PUBG Mobile and PUBG Mobile Lite. Built independently by the players themselves, the team began its journey in competitive scrims and community tournaments.",
+      desc: "A group of passionate players formed Oxygen Esports to compete in PUBG Mobile and PUBG Mobile Lite. The team was built independently and began competing in community tournaments and scrims.",
     },
     {
-      year: "2019 – 2020",
+      year: "2019 — 2020",
       title: "Competitive Scrim Era",
-      desc: "Oxygen Esports actively competed in Tier 3, Tier 2, and Tier 1 scrims and tournaments, building competitive experience and team synergy.",
+      desc: "Oxygen Esports competed in Tier 3, Tier 2 and Tier 1 scrims and tournaments, building competitive discipline and strong team synergy.",
     },
     {
       year: "2020",
       title: "PUBG Ban & Team Disband",
-      desc: "Following the PUBG Mobile ban in India, Oxygen Esports was forced to disband. Despite this, the players maintained their bond over the years.",
+      desc: "After PUBG Mobile was banned in India, Oxygen Esports was forced to disband. However the bond between the players remained strong.",
     },
     {
-      year: "2023 – 2024",
+      year: "2023 — 2024",
       title: "Team Reunion",
-      desc: "After completing their studies, the original players reunited and returned to competitive gaming, practicing BGMI together once again.",
+      desc: "After finishing their education, the original players reunited and began playing BGMI again, rebuilding their competitive chemistry.",
     },
     {
       year: "October 2025",
       title: "Omegastrike Founded",
-      desc: "The team founded Omegastrike, a new esports organization built on the legacy of Oxygen Esports with a renewed competitive vision.",
+      desc: "The players decided to build a new professional organization called Omegastrike, continuing the legacy of Oxygen Esports.",
     },
     {
       year: "2026",
       title: "Competitive Expansion",
-      desc: "Omegastrike continues developing its roster and competing in scrims and tournaments while building its esports presence.",
+      desc: "Omegastrike continues developing its roster and competing in scrims and tournaments while building a professional esports brand.",
     },
   ];
 
   return (
-    <section className="py-28 px-6 border-t border-gold/10">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-32 px-6 border-t border-gold/10">
 
-        {/* Header */}
+      <div className="max-w-6xl mx-auto">
+
+        {/* LEGACY BADGE */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl font-sequel mb-4">
+
+          <span className="inline-block px-5 py-2 rounded-full border border-gold/40 text-gold text-sm tracking-wide mb-6">
+            Legacy: Oxygen Esports (2019–2020)
+          </span>
+
+          <h2 className="text-4xl md:text-5xl font-sequel mb-4">
             Our Journey
           </h2>
-          <p className="text-gray-400">
-            From Oxygen Esports to Omegastrike — our competitive story.
+
+          <p className="text-gray-400 max-w-xl mx-auto">
+            From Oxygen Esports to Omegastrike — a journey built on years of
+            friendship, competition, and passion for esports.
           </p>
+
         </div>
 
-        {/* Timeline */}
+
+        {/* TIMELINE */}
         <div className="relative">
 
-          {/* Vertical line */}
-          <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-gold/20"></div>
+          {/* Center line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gold/20 transform -translate-x-1/2"></div>
 
-          <div className="space-y-16">
 
-            {events.map((event, i) => (
-              <div key={i} className="relative pl-12">
+          <div className="space-y-24">
 
-                {/* Dot */}
-                <div className="absolute left-0 top-1 w-8 h-8 flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full border-2 border-gold bg-black"></div>
-                </div>
+            {events.map((event, i) => {
 
-                {/* Card */}
-                <div className="bg-neutral-900 border border-gold/10 rounded-lg p-6 hover:border-gold/30 transition">
+              const left = i % 2 === 0;
 
-                  <span className="text-gold text-sm font-semibold">
-                    {event.year}
-                  </span>
+              return (
 
-                  <h3 className="text-lg font-semibold mt-1">
-                    {event.title}
-                  </h3>
+                <Reveal key={i} delay={i * 0.1}>
 
-                  <p className="text-gray-400 mt-2 text-sm leading-relaxed">
-                    {event.desc}
-                  </p>
+                  <div className="relative flex items-center justify-between">
 
-                </div>
+                    {/* LEFT CARD */}
+                    {left && (
+                      <div className="w-full md:w-[45%] bg-neutral-900 border border-gold/10 p-6 rounded-xl hover:border-gold/30 transition">
 
-              </div>
-            ))}
+                        <span className="text-gold text-sm font-semibold">
+                          {event.year}
+                        </span>
+
+                        <h3 className="text-lg font-semibold mt-1">
+                          {event.title}
+                        </h3>
+
+                        <p className="text-gray-400 mt-2 text-sm leading-relaxed">
+                          {event.desc}
+                        </p>
+
+                      </div>
+                    )}
+
+                    {!left && <div className="hidden md:block w-[45%]"></div>}
+
+                    {/* CENTER DOT */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full border-2 border-gold bg-black"></div>
+
+                    {/* RIGHT CARD */}
+                    {!left && (
+                      <div className="w-full md:w-[45%] bg-neutral-900 border border-gold/10 p-6 rounded-xl hover:border-gold/30 transition">
+
+                        <span className="text-gold text-sm font-semibold">
+                          {event.year}
+                        </span>
+
+                        <h3 className="text-lg font-semibold mt-1">
+                          {event.title}
+                        </h3>
+
+                        <p className="text-gray-400 mt-2 text-sm leading-relaxed">
+                          {event.desc}
+                        </p>
+
+                      </div>
+                    )}
+
+                    {left && <div className="hidden md:block w-[45%]"></div>}
+
+                  </div>
+
+                </Reveal>
+
+              );
+
+            })}
 
           </div>
 
         </div>
 
       </div>
+
     </section>
   );
 }
