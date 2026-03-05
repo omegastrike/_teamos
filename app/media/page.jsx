@@ -9,7 +9,7 @@ export const metadata = {
 export default function MediaPage() {
   return (
     <PageBackground>
-      <main className="pt-32 px-4 md:px-6 text-white max-w-7xl mx-auto">
+      <main className="pt-32 pb-24 px-4 md:px-6 text-white max-w-7xl mx-auto">
 
         {/* HERO */}
         <section className="text-center mb-20">
