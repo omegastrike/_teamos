@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function OrganizationPage() {
   return (
-    <main className="relative min-h-screen pt-32 px-6 text-white overflow-hidden">
+    <main className="min-h-screen pt-32 pb-24 px-6 text-white">
 
       {/* Background Glow Layers */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_15%,rgba(212,175,55,0.08),transparent_60%)]" />
