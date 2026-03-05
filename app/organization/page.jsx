@@ -1,3 +1,5 @@
+import OrganizationTimeline from "../../components/OrganizationTimeline";
+
 export const metadata = {
   title: "Organization",
   description:
@@ -51,6 +53,8 @@ export default function OrganizationPage() {
           />
 
         </div>
+
+        <OrganizationTimeline />
 
         {/* MANAGEMENT TEAM */}
         <SectionTitle title="Management & Performance Staff" />
