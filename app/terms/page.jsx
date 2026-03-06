@@ -1,43 +1,69 @@
+import PageBackground from "../../components/PageBackground";
+
 export const metadata = {
-  title: "Terms of Service",
+  title: "Terms of Service | Omegastrike",
 };
 
-export default function Terms() {
+export default function TermsPage() {
   return (
-    <main className="min-h-screen pt-32 px-6 text-white max-w-4xl mx-auto">
-      <h1 className="text-4xl font-sequel mb-8">Terms of Service</h1>
+    <PageBackground>
+      <main className="min-h-screen pt-32 pb-24 px-6 text-white max-w-4xl mx-auto">
 
-      <Section title="Acceptance of Terms">
-        By accessing this website you agree to comply with
-        these terms and conditions.
-      </Section>
+        <h1 className="text-4xl font-sequel mb-8">Terms of Service</h1>
 
-      <Section title="Intellectual Property">
-        All content including logos, branding, and media
-        belongs to Omegastrike Esports unless stated otherwise.
-      </Section>
+        <p className="text-gray-400 mb-8">
+          These Terms govern your access to and use of the Omegastrike
+          website and related esports services.
+        </p>
 
-      <Section title="Use of Website">
-        Users must not misuse the website or attempt to
-        disrupt its functionality.
-      </Section>
+        <Section title="1. Acceptance of Terms">
+          By accessing this website, you agree to comply with these terms
+          and all applicable laws and regulations.
+        </Section>
 
-      <Section title="External Links">
-        Our site may link to external websites. We are not
-        responsible for their content or privacy practices.
-      </Section>
+        <Section title="2. Use of Website">
+          Users agree not to misuse the website, attempt unauthorized
+          access to systems, distribute malicious content, or disrupt
+          normal operations.
+        </Section>
 
-      <Section title="Changes to Terms">
-        We may update these terms at any time.
-      </Section>
-    </main>
+        <Section title="3. Esports Content">
+          All team branding, player content, media assets, and published
+          materials belong to Omegastrike and may not be reused without
+          permission.
+        </Section>
+
+        <Section title="4. Community Conduct">
+          Users interacting with Omegastrike platforms are expected to
+          maintain respectful behavior within esports communities,
+          including social media and Discord platforms.
+        </Section>
+
+        <Section title="5. External Links">
+          Our website may contain links to third-party websites.
+          Omegastrike is not responsible for external content or services.
+        </Section>
+
+        <Section title="6. Limitation of Liability">
+          Omegastrike is not responsible for damages resulting from
+          website interruptions, technical issues, or third-party
+          integrations.
+        </Section>
+
+        <Section title="7. Modifications">
+          These terms may be updated periodically to reflect changes
+          in operations or legal requirements.
+        </Section>
+
+      </main>
+    </PageBackground>
   );
 }
 
 function Section({ title, children }) {
   return (
     <div className="mb-10">
-      <h2 className="text-xl font-semibold mb-3 text-gold">{title}</h2>
+      <h2 className="text-xl font-semibold mb-3">{title}</h2>
       <p className="text-gray-400 leading-relaxed">{children}</p>
     </div>
   );
